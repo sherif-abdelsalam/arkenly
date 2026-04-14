@@ -4,7 +4,6 @@ import { useI18n } from "@/lib/i18n";
 const featureIcons = [
   <svg key="map" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/></svg>,
   <svg key="pay" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2"/><path d="M2 9v1c0 1.1.9 2 2 2h1"/><path d="M16 11h0"/></svg>,
-  <svg key="lang" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>,
   <svg key="clock" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
   <svg key="chart" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>,
   <svg key="star" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
@@ -16,10 +15,9 @@ export function Features() {
   const features = [
     { icon: featureIcons[0], title: t.features.f1Title, desc: t.features.f1Desc },
     { icon: featureIcons[1], title: t.features.f2Title, desc: t.features.f2Desc },
-    { icon: featureIcons[2], title: t.features.f3Title, desc: t.features.f3Desc },
-    { icon: featureIcons[3], title: t.features.f4Title, desc: t.features.f4Desc },
-    { icon: featureIcons[4], title: t.features.f5Title, desc: t.features.f5Desc },
-    { icon: featureIcons[5], title: t.features.f6Title, desc: t.features.f6Desc },
+    { icon: featureIcons[2], title: t.features.f4Title, desc: t.features.f4Desc },
+    { icon: featureIcons[3], title: t.features.f5Title, desc: t.features.f5Desc },
+    { icon: featureIcons[4], title: t.features.f6Title, desc: t.features.f6Desc },
   ];
 
   return (
