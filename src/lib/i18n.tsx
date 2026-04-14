@@ -115,7 +115,7 @@ const translations = {
   },
 } as const;
 
-type Translations = typeof translations.en;
+type Translations = (typeof translations)[Lang];
 
 interface I18nContextType {
   lang: Lang;
