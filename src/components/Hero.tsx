@@ -18,9 +18,6 @@ export function Hero() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="mx-auto max-w-3xl text-center"
         >
-          <span className="mb-6 inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
-            {t.hero.badge}
-          </span>
 
           <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             {t.hero.title}
