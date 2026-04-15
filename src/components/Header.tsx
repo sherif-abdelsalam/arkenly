@@ -1,30 +1,33 @@
 import { Link } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
 import { useTheme } from "@/lib/theme";
+import { useState } from "react";
 
 export function Header() {
   const { t, lang, toggleLang } = useI18n();
   const { theme, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-            <span className="text-lg font-bold text-primary-foreground">A</span>
+          <div className="w-8 h-8 rounded-lg bg-primary grid place-items-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-primary-foreground">
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              <circle cx="12" cy="16" r="1" fill="currentColor" />
+            </svg>
           </div>
-          <span className="text-xl font-bold text-foreground">
-            {lang === "ar" ? "اركنلي" : "Arkenly"}
+          <span className="text-xl font-extrabold text-foreground">
+            {lang === "ar" ? "اركنلي" : "Ark"}<span className="text-primary">{lang === "ar" ? "" : "enly"}</span>
           </span>
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
-          <a href="#how-it-works" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-            {t.nav.howItWorks}
-          </a>
-          <a href="#features" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-            {t.nav.features}
-          </a>
+          <a href="#how-it-works" className="text-sm text-muted-foreground transition-colors hover:text-foreground">{t.nav.howItWorks}</a>
+          <a href="#features" className="text-sm text-muted-foreground transition-colors hover:text-foreground">{t.nav.features}</a>
+          <a href="#earn" className="text-sm text-muted-foreground transition-colors hover:text-foreground">{t.nav.earn}</a>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -47,11 +50,32 @@ export function Header() {
             {lang === "en" ? "عربي" : "EN"}
           </button>
 
-          <button className="hidden h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 sm:flex">
+          <a href="#cta" className="hidden h-9 items-center justify-center rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground transition-all hover:opacity-90 sm:flex">
             {t.nav.download}
+          </a>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="flex md:hidden flex-col gap-1.5 p-1.5"
+            aria-label="Toggle menu"
+          >
+            <span className={`block w-6 h-0.5 bg-foreground rounded transition-transform ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-foreground rounded transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-foreground rounded transition-transform ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
           </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-background/98 backdrop-blur-xl border-b border-border px-6 py-5 flex flex-col gap-4">
+          <a href="#how-it-works" onClick={() => setMenuOpen(false)} className="text-base text-muted-foreground hover:text-foreground py-2 border-b border-border">{t.nav.howItWorks}</a>
+          <a href="#features" onClick={() => setMenuOpen(false)} className="text-base text-muted-foreground hover:text-foreground py-2 border-b border-border">{t.nav.features}</a>
+          <a href="#earn" onClick={() => setMenuOpen(false)} className="text-base text-muted-foreground hover:text-foreground py-2 border-b border-border">{t.nav.earn}</a>
+          <a href="#cta" onClick={() => setMenuOpen(false)} className="text-center py-3 rounded-full bg-primary text-primary-foreground font-bold">{t.nav.download}</a>
+        </div>
+      )}
     </header>
   );
 }
