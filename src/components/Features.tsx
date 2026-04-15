@@ -1,53 +1,69 @@
 import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 
-const featureIcons = [
-  <svg key="map" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/></svg>,
-  <svg key="pay" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2"/><path d="M2 9v1c0 1.1.9 2 2 2h1"/><path d="M16 11h0"/></svg>,
-  <svg key="clock" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
-  <svg key="chart" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>,
-  <svg key="star" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+const iconColors = [
+  "bg-primary/12",
+  "bg-violet/15",
+  "bg-[oklch(0.60_0.15_230/12%)]",
+  "bg-success/12",
+  "bg-[oklch(0.70_0.15_50/12%)]",
+  "bg-[oklch(0.65_0.18_330/12%)]",
 ];
+
+const emojis = ["🗺️", "🧠", "📅", "💰", "⭐", "🔔"];
 
 export function Features() {
   const { t } = useI18n();
 
   const features = [
-    { icon: featureIcons[0], title: t.features.f1Title, desc: t.features.f1Desc },
-    { icon: featureIcons[1], title: t.features.f2Title, desc: t.features.f2Desc },
-    { icon: featureIcons[2], title: t.features.f4Title, desc: t.features.f4Desc },
-    { icon: featureIcons[3], title: t.features.f5Title, desc: t.features.f5Desc },
-    { icon: featureIcons[4], title: t.features.f6Title, desc: t.features.f6Desc },
+    { title: t.features.f1Title, desc: t.features.f1Desc, wide: true },
+    { title: t.features.f2Title, desc: t.features.f2Desc, wide: false },
+    { title: t.features.f5Title, desc: t.features.f5Desc, wide: false },
+    { title: t.features.f4Title, desc: t.features.f4Desc, wide: false },
+    { title: t.features.f6Title, desc: t.features.f6Desc, wide: true },
+    { title: t.features.f7Title, desc: t.features.f7Desc, wide: false },
   ];
 
   return (
-    <section id="features" className="py-20 sm:py-28">
+    <section id="features" className="bg-surface py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mx-auto mb-16 max-w-2xl text-center"
-        >
-          <h2 className="mb-4 text-3xl font-bold text-foreground sm:text-4xl">{t.features.title}</h2>
-          <p className="text-lg text-muted-foreground">{t.features.subtitle}</p>
-        </motion.div>
+        <div className="mb-14">
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/25 bg-primary/6 text-xs font-bold uppercase tracking-wider text-primary mb-5"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px] shadow-primary" />
+            {t.features.label}
+          </motion.span>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl font-extrabold text-foreground whitespace-pre-line"
+          >
+            {t.features.title}
+          </motion.h2>
+        </div>
+
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="group rounded-2xl border border-border bg-card p-7 transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
+              transition={{ delay: i * 0.06 }}
+              className={`relative group rounded-2xl border border-border bg-card p-7 overflow-hidden hover:-translate-y-1 hover:border-primary/20 hover:shadow-2xl transition-all ${f.wide ? "sm:col-span-2" : ""}`}
             >
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                {f.icon}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-primary/4 to-violet/4" />
+              <div className={`relative w-12 h-12 rounded-lg ${iconColors[i]} grid place-items-center text-xl mb-4`}>
+                {emojis[i]}
               </div>
-              <h3 className="mb-2 text-lg font-bold text-foreground">{f.title}</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
+              <h3 className="relative text-base font-bold text-foreground mb-2">{f.title}</h3>
+              <p className="relative text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </div>
