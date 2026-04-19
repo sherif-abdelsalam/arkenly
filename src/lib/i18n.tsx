@@ -4,7 +4,7 @@ export type Lang = "en" | "ar";
 
 const translations = {
   en: {
-    nav: { home: "Home", howItWorks: "How It Works", features: "Features", earn: "Earn", download: "Get Early Access" },
+    nav: { home: "Home", howItWorks: "How It Works", features: "Features", earn: "Earn", download: "Get Early Access", tryNow: "Try Now" },
     hero: {
       badgeNew: "NEW",
       badgeText: "Smart Parking is finally here",
@@ -170,7 +170,7 @@ const translations = {
     theme: { light: "Light", dark: "Dark" },
   },
   ar: {
-    nav: { home: "الرئيسية", howItWorks: "بيشتغل إزاي", features: "المميزات", earn: "اكسب", download: "سجّل دلوقتي" },
+    nav: { home: "الرئيسية", howItWorks: "بيشتغل إزاي", features: "المميزات", earn: "اكسب", download: "سجّل دلوقتي", tryNow: "جرّب دلوقتي" },
     hero: {
       badgeNew: "جديد",
       badgeText: "الركنة الذكية وصلت أخيراً",
