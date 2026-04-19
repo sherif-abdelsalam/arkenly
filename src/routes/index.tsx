@@ -10,6 +10,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
 import { I18nProvider } from "@/lib/i18n";
 import { ThemeProvider } from "@/lib/theme";
+import { AuthProvider } from "@/lib/auth";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,19 +29,21 @@ function Index() {
   return (
     <ThemeProvider>
       <I18nProvider>
-        <div className="min-h-screen bg-background text-foreground">
-          <Header />
-          <main>
-            <Hero />
-            <ProblemSolution />
-            <HowItWorks />
-            <Features />
-            <OwnersCTA />
-            <Testimonials />
-            <FinalCTA />
-          </main>
-          <Footer />
-        </div>
+        <AuthProvider>
+          <div className="min-h-screen bg-background text-foreground">
+            <Header />
+            <main>
+              <Hero />
+              <ProblemSolution />
+              <HowItWorks />
+              <Features />
+              <OwnersCTA />
+              <Testimonials />
+              <FinalCTA />
+            </main>
+            <Footer />
+          </div>
+        </AuthProvider>
       </I18nProvider>
     </ThemeProvider>
   );

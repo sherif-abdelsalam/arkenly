@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { BookingMVP } from "@/components/BookingMVP";
 import { I18nProvider, useI18n } from "@/lib/i18n";
 import { ThemeProvider } from "@/lib/theme";
+import { AuthProvider } from "@/lib/auth";
 
 export const Route = createFileRoute("/book")({
   head: () => ({
@@ -21,14 +22,16 @@ function BookPage() {
   return (
     <ThemeProvider>
       <I18nProvider>
-        <div className="min-h-screen bg-background text-foreground">
-          <Header />
-          <main className="pt-20">
-            <BackBar />
-            <BookingMVP />
-          </main>
-          <Footer />
-        </div>
+        <AuthProvider>
+          <div className="min-h-screen bg-background text-foreground">
+            <Header />
+            <main className="pt-20">
+              <BackBar />
+              <BookingMVP />
+            </main>
+            <Footer />
+          </div>
+        </AuthProvider>
       </I18nProvider>
     </ThemeProvider>
   );
