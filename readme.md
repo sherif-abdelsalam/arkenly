@@ -42,40 +42,9 @@ You can store them in a `.env` file locally for development.
 
 This repo is configured for Cloudflare worker deployment, not a plain static site.
 
-1. Build the app:
+- Deploy the app:
 
 ```bash
-npm run build
+npm run deploy
 ```
 
-2. Deploy the generated worker:
-
-```bash
-wrangler deploy --config dist/server/wrangler.json
-```
-
-### Notes
-
-- If you change source code, you must rebuild and redeploy for the live site.
-- The default workers.dev URL is based on the worker name from `wrangler.jsonc`.
-- You do not need to change the worker name unless you want a different URL.
-
-## Optional: update deploy script
-
-If you want a single command for build and deploy, update `package.json`:
-
-```json
-"scripts": {
-  "dev": "vite dev",
-  "build": "vite build",
-  "preview": "vite preview",
-  "lint": "eslint .",
-  "deploy": "npm run build && wrangler deploy --config dist/server/wrangler.json"
-}
-```
-
-## Troubleshooting
-
-- If deployment fails because of `_redirects`, remove `public/_redirects` before building.
-- If the worker URL is not immediately reachable, wait a few minutes for Cloudflare DNS propagation.
-- If you want a custom domain later, use Cloudflare dashboard routing.
