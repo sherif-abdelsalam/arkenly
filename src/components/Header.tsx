@@ -1,12 +1,19 @@
 import { Link } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
 import { useTheme } from "@/lib/theme";
+import { useAuth } from "@/lib/auth";
 import { useState } from "react";
 
 export function Header() {
   const { t, lang, toggleLang } = useI18n();
   const { theme, toggleTheme } = useTheme();
+  const { user, signOut } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const userInitial =
+    (user?.user_metadata?.full_name as string | undefined)?.[0]?.toUpperCase() ??
+    user?.email?.[0]?.toUpperCase() ??
+    "?";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
@@ -51,11 +58,33 @@ export function Header() {
             {lang === "en" ? "عربي" : "EN"}
           </button>
 
-          <Link to="/book" className="hidden h-9 items-center justify-center rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground transition-all hover:opacity-90 sm:flex">
-            {t.nav.tryNow}
-          </Link>
+          {user ? (
+            <div className="hidden sm:flex items-center gap-2">
+              <div className="h-9 w-9 rounded-full bg-primary/15 border border-primary/30 grid place-items-center text-sm font-bold text-primary" title={user.email ?? ""}>
+                {userInitial}
+              </div>
+              <button
+                onClick={() => signOut()}
+                className="h-9 inline-flex items-center justify-center rounded-lg border border-border bg-card px-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+              >
+                {t.nav.logout}
+              </button>
+            </div>
+          ) : (
+            <>
+              <Link
+                to="/auth"
+                search={{ redirect: "/book", mode: "login" }}
+                className="hidden sm:flex h-9 items-center justify-center rounded-lg border border-border bg-card px-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+              >
+                {t.nav.login}
+              </Link>
+              <Link to="/book" className="hidden h-9 items-center justify-center rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground transition-all hover:opacity-90 sm:flex">
+                {t.nav.tryNow}
+              </Link>
+            </>
+          )}
 
-          {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="flex md:hidden flex-col gap-1.5 p-1.5"
@@ -68,13 +97,17 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-background/98 backdrop-blur-xl border-b border-border px-6 py-5 flex flex-col gap-4">
           <a href="/#how-it-works" onClick={() => setMenuOpen(false)} className="text-base text-muted-foreground hover:text-foreground py-2 border-b border-border">{t.nav.howItWorks}</a>
           <a href="/#features" onClick={() => setMenuOpen(false)} className="text-base text-muted-foreground hover:text-foreground py-2 border-b border-border">{t.nav.features}</a>
           <a href="/#earn" onClick={() => setMenuOpen(false)} className="text-base text-muted-foreground hover:text-foreground py-2 border-b border-border">{t.nav.earn}</a>
           <Link to="/book" onClick={() => setMenuOpen(false)} className="text-center py-3 rounded-full bg-primary text-primary-foreground font-bold">{t.nav.tryNow}</Link>
+          {user ? (
+            <button onClick={() => { setMenuOpen(false); signOut(); }} className="text-center py-3 rounded-full border border-border text-foreground font-bold">{t.nav.logout}</button>
+          ) : (
+            <Link to="/auth" search={{ redirect: "/book", mode: "login" }} onClick={() => setMenuOpen(false)} className="text-center py-3 rounded-full border border-border text-foreground font-bold">{t.nav.login}</Link>
+          )}
         </div>
       )}
     </header>
