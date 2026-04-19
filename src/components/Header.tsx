@@ -25,9 +25,10 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
-          <a href="#how-it-works" className="text-sm text-muted-foreground transition-colors hover:text-foreground">{t.nav.howItWorks}</a>
-          <a href="#features" className="text-sm text-muted-foreground transition-colors hover:text-foreground">{t.nav.features}</a>
-          <a href="#earn" className="text-sm text-muted-foreground transition-colors hover:text-foreground">{t.nav.earn}</a>
+          <a href="/#how-it-works" className="text-sm text-muted-foreground transition-colors hover:text-foreground">{t.nav.howItWorks}</a>
+          <a href="/#features" className="text-sm text-muted-foreground transition-colors hover:text-foreground">{t.nav.features}</a>
+          <a href="/#earn" className="text-sm text-muted-foreground transition-colors hover:text-foreground">{t.nav.earn}</a>
+          <Link to="/book" className="text-sm font-semibold text-primary transition-colors hover:opacity-80">{t.nav.tryNow}</Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -50,9 +51,9 @@ export function Header() {
             {lang === "en" ? "عربي" : "EN"}
           </button>
 
-          <a href="#cta" className="hidden h-9 items-center justify-center rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground transition-all hover:opacity-90 sm:flex">
-            {t.nav.download}
-          </a>
+          <Link to="/book" className="hidden h-9 items-center justify-center rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground transition-all hover:opacity-90 sm:flex">
+            {t.nav.tryNow}
+          </Link>
 
           {/* Mobile hamburger */}
           <button
@@ -70,10 +71,10 @@ export function Header() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-background/98 backdrop-blur-xl border-b border-border px-6 py-5 flex flex-col gap-4">
-          <a href="#how-it-works" onClick={() => setMenuOpen(false)} className="text-base text-muted-foreground hover:text-foreground py-2 border-b border-border">{t.nav.howItWorks}</a>
-          <a href="#features" onClick={() => setMenuOpen(false)} className="text-base text-muted-foreground hover:text-foreground py-2 border-b border-border">{t.nav.features}</a>
-          <a href="#earn" onClick={() => setMenuOpen(false)} className="text-base text-muted-foreground hover:text-foreground py-2 border-b border-border">{t.nav.earn}</a>
-          <a href="#cta" onClick={() => setMenuOpen(false)} className="text-center py-3 rounded-full bg-primary text-primary-foreground font-bold">{t.nav.download}</a>
+          <a href="/#how-it-works" onClick={() => setMenuOpen(false)} className="text-base text-muted-foreground hover:text-foreground py-2 border-b border-border">{t.nav.howItWorks}</a>
+          <a href="/#features" onClick={() => setMenuOpen(false)} className="text-base text-muted-foreground hover:text-foreground py-2 border-b border-border">{t.nav.features}</a>
+          <a href="/#earn" onClick={() => setMenuOpen(false)} className="text-base text-muted-foreground hover:text-foreground py-2 border-b border-border">{t.nav.earn}</a>
+          <Link to="/book" onClick={() => setMenuOpen(false)} className="text-center py-3 rounded-full bg-primary text-primary-foreground font-bold">{t.nav.tryNow}</Link>
         </div>
       )}
     </header>

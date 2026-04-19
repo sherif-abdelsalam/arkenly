@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
 
 export function Hero() {
@@ -82,6 +83,14 @@ export function Hero() {
             {submitted && (
               <p className="text-sm text-primary ms-4 mb-4">✓ You're on the list!</p>
             )}
+
+            <Link
+              to="/book"
+              className="mt-3 inline-flex items-center gap-2 px-6 py-3.5 rounded-full border-2 border-primary/40 bg-primary/5 text-primary font-bold text-sm hover:bg-primary/10 hover:border-primary transition-all"
+            >
+              {t.nav.tryNow}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: dir === "rtl" ? "scaleX(-1)" : undefined }}><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+            </Link>
 
             {/* Social proof */}
             <div className="flex items-center gap-3.5 mt-6">
