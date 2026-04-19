@@ -20,9 +20,9 @@ export function FinalCTA() {
   };
 
   return (
-    <section id="cta" className="relative py-20 sm:py-28 overflow-hidden" style={{ background: "linear-gradient(135deg, oklch(0.14 0.03 250) 0%, oklch(0.17 0.04 260) 50%, oklch(0.15 0.05 280) 100%)" }}>
+    <section id="cta" className="relative py-20 sm:py-28 overflow-hidden bg-surface">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-[100px] left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[radial-gradient(circle,oklch(0.80_0.16_170/12%),transparent_70%)]" />
+        <div className="absolute -top-[100px] left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[radial-gradient(circle,var(--hero-glow),transparent_70%)]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-xl px-4 sm:px-6 text-center">
