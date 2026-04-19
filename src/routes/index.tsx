@@ -7,7 +7,6 @@ import { Features } from "@/components/Features";
 import { OwnersCTA } from "@/components/OwnersCTA";
 import { Testimonials } from "@/components/Testimonials";
 import { FinalCTA } from "@/components/FinalCTA";
-import { BookingMVP } from "@/components/BookingMVP";
 import { Footer } from "@/components/Footer";
 import { I18nProvider } from "@/lib/i18n";
 import { ThemeProvider } from "@/lib/theme";
@@ -36,7 +35,6 @@ function Index() {
             <ProblemSolution />
             <HowItWorks />
             <Features />
-            <BookingMVP />
             <OwnersCTA />
             <Testimonials />
             <FinalCTA />
